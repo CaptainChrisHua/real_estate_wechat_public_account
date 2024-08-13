@@ -25,7 +25,7 @@ def check_signature(signature: str, timestamp: str, nonce: str) -> bool:
     return tmp_str == signature
 
 
-@wechat.get('/wechat')
+@wechat.get('/')
 async def wechat_verify(signature: str, timestamp: str, nonce: str, echostr: str):
     # 校验signature
     if check_signature(signature, timestamp, nonce):
