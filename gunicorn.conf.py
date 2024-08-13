@@ -25,9 +25,9 @@ timeout = 600
 # pidfile = './run/gunicorn.pid'
 
 # 设置访问日志和错误信息日志路径
-accesslog = './logs/access.log'
+accesslog = '/logs/access.log'
 access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" %(D)s'
-errorlog = './logs/access_error.log'
+errorlog = '/logs/access_error.log'
 # 设置日志记录水平
 loglevel = 'info'
 
