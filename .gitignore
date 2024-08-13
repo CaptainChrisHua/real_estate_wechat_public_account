@@ -4,6 +4,4 @@
 /nohup.out
 .vscode/
 venv/
-/data/logs
 test*.py
-/logs

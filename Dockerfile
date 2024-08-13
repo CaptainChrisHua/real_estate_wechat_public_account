@@ -8,7 +8,7 @@ RUN ln -fs /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconf
 
 COPY requirements.txt requirements.txt
 
-RUN mkdir ./data/logs /logs /logs/wechat_fastapi && pip3 install --no-cache -r requirements.txt
+RUN mkdir /logs /logs/wechat_fastapi && pip3 install --no-cache -r requirements.txt
 
 COPY . /wechat_fastapi
 WORKDIR /wechat_fastapi
