@@ -25,10 +25,4 @@ elasticsearch_dsl
 redis==5.0.8
 sqlalchemy==2.0.32
 pymongo==4.8.0
-cffi
-cryptography
-pycparser
 gunicorn
-
-# WechatPublicSDK
-wechatpy==1.8.18
