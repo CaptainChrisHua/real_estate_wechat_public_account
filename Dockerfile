@@ -13,7 +13,7 @@ RUN mkdir /logs /logs/wechat_fastapi && pip3 install --no-cache -r requirements.
 COPY . /wechat_fastapi
 WORKDIR /wechat_fastapi
 
-ENV PYTHONPATH=/projects/wechat_fastapi
+ENV PYTHONPATH=/wechat_fastapi
 
 EXPOSE ${APP_PORT}
 
