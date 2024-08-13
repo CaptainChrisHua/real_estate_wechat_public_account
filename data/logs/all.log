@@ -1,0 +1,24 @@
+2023-10-26 17:33:59,687 - ERROR - __init__.py[:85]  "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/algo_tracer/__init__.py", line 169, in before_request,    span.set_tag("http.url", str(request.url)),AttributeError: '_AsyncioScope' object has no attribute 'set_tag', - 81163-8631743168
+2023-10-26 17:33:59,688 - ERROR - __init__.py[:87] Traceback (most recent call last):
+  File "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 106, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/fastapi_contrib/tracing/middlewares.py", line 52, in dispatch
+    span = self.before_request(request, tracer)
+  File "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/algo_tracer/__init__.py", line 169, in before_request
+    span.set_tag("http.url", str(request.url))
+AttributeError: '_AsyncioScope' object has no attribute 'set_tag'
+ - 81163-8631743168
+2023-10-26 17:33:59,919 - ERROR - __init__.py[:85]  "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/algo_tracer/__init__.py", line 169, in before_request,    span.set_tag("http.url", str(request.url)),AttributeError: '_AsyncioScope' object has no attribute 'set_tag', - 81163-8631743168
+2023-10-26 17:33:59,920 - ERROR - __init__.py[:87] Traceback (most recent call last):
+  File "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/starlette/middleware/base.py", line 106, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/fastapi_contrib/tracing/middlewares.py", line 52, in dispatch
+    span = self.before_request(request, tracer)
+  File "/Users/chris/Desktop/UTC/utc_fastapi/venv/lib/python3.9/site-packages/algo_tracer/__init__.py", line 169, in before_request
+    span.set_tag("http.url", str(request.url))
+AttributeError: '_AsyncioScope' object has no attribute 'set_tag'
+ - 81163-8631743168

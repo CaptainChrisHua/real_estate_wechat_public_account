@@ -1,0 +1,530 @@
+[2023-01-07 11:23:44 +0800] [99462] [INFO] Starting gunicorn 20.0.4
+[2023-01-07 11:23:44 +0800] [99462] [INFO] Listening at: http://0.0.0.0:4568 (99462)
+[2023-01-07 11:23:44 +0800] [99462] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2023-01-07 11:23:44 +0800] [99463] [INFO] Booting worker with pid: 99463
+[2023-01-07 11:23:44 +0800] [99463] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1313, in mkdir
+    self._accessor.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/data/logs'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/uvicorn/workers.py", line 66, in init_process
+    super(UvicornWorker, self).init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/chris/Desktop/qizhidao/ai-public/fastapi_template/app.py", line 5, in <module>
+    from algo_database_utils.redis_util import RedisUtil
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/algo_database_utils/__init__.py", line 5, in <module>
+    database_logger = LogUtil(os.environ.get("LOG_PATH") or "/data/logs", "INFO")
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/algo_log_utils/__init__.py", line 28, in __init__
+    log_path.mkdir(parents=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1317, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1313, in mkdir
+    self._accessor.mkdir(self, mode)
+OSError: [Errno 30] Read-only file system: '/data'
+[2023-01-07 11:23:44 +0800] [99463] [INFO] Worker exiting (pid: 99463)
+[2023-01-07 11:23:44 +0800] [99462] [INFO] Shutting down: Master
+[2023-01-07 11:23:44 +0800] [99462] [INFO] Reason: Worker failed to boot.
+[2023-01-07 11:24:06 +0800] [99521] [INFO] Starting gunicorn 20.0.4
+[2023-01-07 11:24:06 +0800] [99521] [INFO] Listening at: http://0.0.0.0:4568 (99521)
+[2023-01-07 11:24:06 +0800] [99521] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2023-01-07 11:24:06 +0800] [99522] [INFO] Booting worker with pid: 99522
+[2023-01-07 11:24:07 +0800] [99522] [INFO] Started server process [99522]
+[2023-01-07 11:24:07 +0800] [99522] [INFO] Waiting for application startup.
+[2023-01-07 11:24:07 +0800] [99522] [INFO] Application startup complete.
+[2023-01-07 11:24:16 +0800] [99521] [INFO] Handling signal: int
+[2023-01-07 11:24:16 +0800] [99521] [INFO] Shutting down: Master
+[2023-10-27 21:41:16 -0700] [19769] [INFO] Starting gunicorn 20.0.4
+[2023-10-27 21:41:16 -0700] [19769] [INFO] Listening at: http://0.0.0.0:4568 (19769)
+[2023-10-27 21:41:16 -0700] [19769] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2023-10-27 21:41:16 -0700] [19771] [INFO] Booting worker with pid: 19771
+[2023-10-27 21:41:18 -0700] [19771] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1313, in mkdir
+    self._accessor.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/data/logs'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/uvicorn/workers.py", line 66, in init_process
+    super(UvicornWorker, self).init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/chris/Desktop/UTC/utc_fastapi/app.py", line 7, in <module>
+    from src.api import error_handler
+  File "/Users/chris/Desktop/UTC/utc_fastapi/src/api/__init__.py", line 10, in <module>
+    from src.utils import logger
+  File "/Users/chris/Desktop/UTC/utc_fastapi/src/utils/__init__.py", line 2, in <module>
+    from src.utils.es_util import EsApiUtil
+  File "/Users/chris/Desktop/UTC/utc_fastapi/src/utils/es_util.py", line 15, in <module>
+    from algo_database_utils import database_logger
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/algo_database_utils/__init__.py", line 5, in <module>
+    database_logger = LogUtil(os.environ.get("LOG_PATH") or "/data/logs", "INFO")
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/algo_log_utils/__init__.py", line 28, in __init__
+    log_path.mkdir(parents=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1317, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1313, in mkdir
+    self._accessor.mkdir(self, mode)
+OSError: [Errno 30] Read-only file system: '/data'
+[2023-10-27 21:41:18 -0700] [19771] [INFO] Worker exiting (pid: 19771)
+[2023-10-27 21:41:18 -0700] [19769] [INFO] Shutting down: Master
+[2023-10-27 21:41:18 -0700] [19769] [INFO] Reason: Worker failed to boot.
+[2024-01-19 22:15:09 -0800] [30126] [INFO] Starting gunicorn 20.0.4
+[2024-01-19 22:15:09 -0800] [30126] [INFO] Listening at: http://0.0.0.0:4568 (30126)
+[2024-01-19 22:15:09 -0800] [30126] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2024-01-19 22:15:09 -0800] [30127] [INFO] Booting worker with pid: 30127
+[2024-01-19 22:15:10 -0800] [30127] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 94, in check_file_field
+    from multipart import __version__  # type: ignore
+ModuleNotFoundError: No module named 'multipart'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/uvicorn/workers.py", line 66, in init_process
+    super(UvicornWorker, self).init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/app.py", line 9, in <module>
+    from src.api.views import api_v1
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/src/api/views.py", line 23, in <module>
+    async def upload_files(files: List[UploadFile] = File(...)):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 582, in decorator
+    self.add_api_route(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 525, in add_api_route
+    route = route_class(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 413, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 784, in get_body_field
+    check_file_field(final_field)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 107, in check_file_field
+    raise RuntimeError(multipart_not_installed_error)
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+[2024-01-19 22:15:10 -0800] [30127] [INFO] Worker exiting (pid: 30127)
+[2024-01-19 22:15:11 -0800] [30126] [INFO] Shutting down: Master
+[2024-01-19 22:15:11 -0800] [30126] [INFO] Reason: Worker failed to boot.
+[2024-01-19 22:15:20 -0800] [30213] [INFO] Starting gunicorn 20.0.4
+[2024-01-19 22:15:20 -0800] [30213] [INFO] Listening at: http://0.0.0.0:4568 (30213)
+[2024-01-19 22:15:20 -0800] [30213] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2024-01-19 22:15:20 -0800] [30214] [INFO] Booting worker with pid: 30214
+[2024-01-19 22:15:21 -0800] [30214] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 94, in check_file_field
+    from multipart import __version__  # type: ignore
+ModuleNotFoundError: No module named 'multipart'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/uvicorn/workers.py", line 66, in init_process
+    super(UvicornWorker, self).init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/app.py", line 9, in <module>
+    from src.api.views import api_v1
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/src/api/views.py", line 23, in <module>
+    async def upload_files(files: List[UploadFile] = File(...)):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 582, in decorator
+    self.add_api_route(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 525, in add_api_route
+    route = route_class(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 413, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 784, in get_body_field
+    check_file_field(final_field)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 107, in check_file_field
+    raise RuntimeError(multipart_not_installed_error)
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+[2024-01-19 22:15:21 -0800] [30214] [INFO] Worker exiting (pid: 30214)
+[2024-01-19 22:15:21 -0800] [30213] [INFO] Shutting down: Master
+[2024-01-19 22:15:21 -0800] [30213] [INFO] Reason: Worker failed to boot.
+[2024-01-19 22:15:26 -0800] [30252] [INFO] Starting gunicorn 20.0.4
+[2024-01-19 22:15:26 -0800] [30252] [INFO] Listening at: http://0.0.0.0:4568 (30252)
+[2024-01-19 22:15:26 -0800] [30252] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2024-01-19 22:15:26 -0800] [30253] [INFO] Booting worker with pid: 30253
+[2024-01-19 22:15:27 -0800] [30253] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 94, in check_file_field
+    from multipart import __version__  # type: ignore
+ModuleNotFoundError: No module named 'multipart'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/uvicorn/workers.py", line 66, in init_process
+    super(UvicornWorker, self).init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/app.py", line 9, in <module>
+    from src.api.views import api_v1
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/src/api/views.py", line 23, in <module>
+    async def upload_files(files: List[UploadFile] = File(...)):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 582, in decorator
+    self.add_api_route(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 525, in add_api_route
+    route = route_class(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 413, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 784, in get_body_field
+    check_file_field(final_field)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 107, in check_file_field
+    raise RuntimeError(multipart_not_installed_error)
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+[2024-01-19 22:15:27 -0800] [30253] [INFO] Worker exiting (pid: 30253)
+[2024-01-19 22:15:27 -0800] [30252] [INFO] Shutting down: Master
+[2024-01-19 22:15:27 -0800] [30252] [INFO] Reason: Worker failed to boot.
+[2024-01-19 22:15:52 -0800] [30364] [INFO] Starting gunicorn 20.0.4
+[2024-01-19 22:15:52 -0800] [30364] [INFO] Listening at: http://0.0.0.0:4568 (30364)
+[2024-01-19 22:15:52 -0800] [30364] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2024-01-19 22:15:52 -0800] [30367] [INFO] Booting worker with pid: 30367
+[2024-01-19 22:15:53 -0800] [30367] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 94, in check_file_field
+    from multipart import __version__  # type: ignore
+ModuleNotFoundError: No module named 'multipart'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/uvicorn/workers.py", line 66, in init_process
+    super(UvicornWorker, self).init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/app.py", line 9, in <module>
+    from src.api.views import api_v1
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/src/api/views.py", line 23, in <module>
+    async def upload_files(files: List[UploadFile] = File(...)):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 582, in decorator
+    self.add_api_route(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 525, in add_api_route
+    route = route_class(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 413, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 784, in get_body_field
+    check_file_field(final_field)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 107, in check_file_field
+    raise RuntimeError(multipart_not_installed_error)
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+[2024-01-19 22:15:53 -0800] [30367] [INFO] Worker exiting (pid: 30367)
+[2024-01-19 22:15:53 -0800] [30364] [INFO] Shutting down: Master
+[2024-01-19 22:15:53 -0800] [30364] [INFO] Reason: Worker failed to boot.
+[2024-01-19 22:16:10 -0800] [30423] [INFO] Starting gunicorn 20.0.4
+[2024-01-19 22:16:10 -0800] [30423] [INFO] Listening at: http://0.0.0.0:4568 (30423)
+[2024-01-19 22:16:10 -0800] [30423] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2024-01-19 22:16:10 -0800] [30424] [INFO] Booting worker with pid: 30424
+[2024-01-19 22:16:11 -0800] [30424] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 94, in check_file_field
+    from multipart import __version__  # type: ignore
+ModuleNotFoundError: No module named 'multipart'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/uvicorn/workers.py", line 66, in init_process
+    super(UvicornWorker, self).init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/app.py", line 9, in <module>
+    from src.api.views import api_v1
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/src/api/views.py", line 23, in <module>
+    async def upload_files(files: List[UploadFile] = File(...)):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 582, in decorator
+    self.add_api_route(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 525, in add_api_route
+    route = route_class(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 413, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 784, in get_body_field
+    check_file_field(final_field)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 107, in check_file_field
+    raise RuntimeError(multipart_not_installed_error)
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+[2024-01-19 22:16:11 -0800] [30424] [INFO] Worker exiting (pid: 30424)
+[2024-01-19 22:16:11 -0800] [30423] [INFO] Shutting down: Master
+[2024-01-19 22:16:11 -0800] [30423] [INFO] Reason: Worker failed to boot.
+[2024-01-19 22:16:22 -0800] [30486] [INFO] Starting gunicorn 20.0.4
+[2024-01-19 22:16:22 -0800] [30486] [INFO] Listening at: http://0.0.0.0:4568 (30486)
+[2024-01-19 22:16:22 -0800] [30486] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2024-01-19 22:16:22 -0800] [30487] [INFO] Booting worker with pid: 30487
+[2024-01-19 22:16:23 -0800] [30487] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 94, in check_file_field
+    from multipart import __version__  # type: ignore
+ModuleNotFoundError: No module named 'multipart'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/uvicorn/workers.py", line 66, in init_process
+    super(UvicornWorker, self).init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/app.py", line 9, in <module>
+    from src.api.views import api_v1
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/src/api/views.py", line 23, in <module>
+    async def upload_files(files: List[UploadFile] = File(...)):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 582, in decorator
+    self.add_api_route(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 525, in add_api_route
+    route = route_class(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 413, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 784, in get_body_field
+    check_file_field(final_field)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 107, in check_file_field
+    raise RuntimeError(multipart_not_installed_error)
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+[2024-01-19 22:16:23 -0800] [30487] [INFO] Worker exiting (pid: 30487)
+[2024-01-19 22:16:23 -0800] [30486] [INFO] Shutting down: Master
+[2024-01-19 22:16:23 -0800] [30486] [INFO] Reason: Worker failed to boot.
+[2024-01-19 22:17:23 -0800] [30659] [INFO] Starting gunicorn 20.0.4
+[2024-01-19 22:17:23 -0800] [30659] [INFO] Listening at: http://0.0.0.0:4568 (30659)
+[2024-01-19 22:17:23 -0800] [30659] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2024-01-19 22:17:23 -0800] [30660] [INFO] Booting worker with pid: 30660
+[2024-01-19 22:17:24 -0800] [30660] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 94, in check_file_field
+    from multipart import __version__  # type: ignore
+ModuleNotFoundError: No module named 'multipart'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/uvicorn/workers.py", line 66, in init_process
+    super(UvicornWorker, self).init_process()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 119, in init_process
+    self.load_wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/workers/base.py", line 144, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 49, in load
+    return self.load_wsgiapp()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 39, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/gunicorn/util.py", line 358, in import_app
+    mod = importlib.import_module(module)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/app.py", line 9, in <module>
+    from src.api.views import api_v1
+  File "/Users/chris/Desktop/UTC/projects/backend/utc_fastapi/src/api/views.py", line 23, in <module>
+    async def upload_files(files: List[UploadFile] = File(...)):
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 582, in decorator
+    self.add_api_route(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 525, in add_api_route
+    route = route_class(
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/routing.py", line 413, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 784, in get_body_field
+    check_file_field(final_field)
+  File "/Users/chris/Library/Python/3.9/lib/python/site-packages/fastapi/dependencies/utils.py", line 107, in check_file_field
+    raise RuntimeError(multipart_not_installed_error)
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+[2024-01-19 22:17:24 -0800] [30660] [INFO] Worker exiting (pid: 30660)
+[2024-01-19 22:17:24 -0800] [30659] [INFO] Shutting down: Master
+[2024-01-19 22:17:24 -0800] [30659] [INFO] Reason: Worker failed to boot.
