@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import hashlib
+import time
 
 from fastapi import APIRouter
 from fastapi import Request, HTTPException
@@ -22,7 +23,7 @@ def check_signature(signature: str, timestamp: str, nonce: str) -> bool:
     tmp_str = hashlib.sha1(tmp_str.encode('utf-8')).hexdigest()
 
     # 将加密后的字符串与signature对比
-    logger.info(tmp_str == signature)
+    logger.info(PUB_APP_TOKEN, tmp_str, timestamp, nonce, signature)
     return tmp_str == signature
 
 
@@ -32,6 +33,10 @@ async def wechat_verify(signature: str, timestamp: str, nonce: str, echostr: str
     if check_signature(signature, timestamp, nonce):
         # 校验通过，返回echostr
         logger.info(echostr)
+        local_time = int(time.time())
+
+        logger.info(
+            f"Server timestamp: {timestamp}, Local timestamp: {local_time}, Difference: {local_time - timestamp} seconds")
         return echostr
     else:
         # 校验失败，抛出HTTP异常
