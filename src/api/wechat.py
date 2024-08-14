@@ -22,6 +22,7 @@ def check_signature(signature: str, timestamp: str, nonce: str) -> bool:
     tmp_str = hashlib.sha1(tmp_str.encode('utf-8')).hexdigest()
 
     # 将加密后的字符串与signature对比
+    logger.info(tmp_str == signature)
     return tmp_str == signature
 
 
@@ -30,6 +31,7 @@ async def wechat_verify(signature: str, timestamp: str, nonce: str, echostr: str
     # 校验signature
     if check_signature(signature, timestamp, nonce):
         # 校验通过，返回echostr
+        logger.info(echostr)
         return echostr
     else:
         # 校验失败，抛出HTTP异常
