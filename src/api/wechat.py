@@ -2,8 +2,7 @@
 import hashlib
 import time
 
-from fastapi import APIRouter
-from fastapi import Request, HTTPException
+from fastapi import APIRouter, HTTPException, Request, Response
 
 from src.conf.config import PUB_APP_TOKEN
 from src.utils import logger
@@ -23,7 +22,10 @@ def check_signature(signature: str, timestamp: str, nonce: str) -> bool:
     tmp_str = hashlib.sha1(tmp_str.encode('utf-8')).hexdigest()
 
     # 将加密后的字符串与signature对比
-    logger.info(PUB_APP_TOKEN, tmp_str, timestamp, nonce, signature)
+    logger.info(PUB_APP_TOKEN)
+    logger.info(tmp_str)
+    logger.info(nonce)
+    logger.info(signature)
     return tmp_str == signature
 
 
@@ -38,7 +40,7 @@ async def wechat_verify(signature: str, timestamp: str, nonce: str, echostr: str
         logger.info(
             f"Server timestamp: {timestamp}, Local timestamp: {local_time}, "
             f"Difference: {local_time - int(timestamp)} seconds")
-        return echostr
+        return Response(content=echostr, media_type="text/plain;charset=UTF-8")
     else:
         # 校验失败，抛出HTTP异常
         raise HTTPException(status_code=403, detail="Verification failed")
