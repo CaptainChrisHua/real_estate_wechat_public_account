@@ -36,7 +36,8 @@ async def wechat_verify(signature: str, timestamp: str, nonce: str, echostr: str
         local_time = int(time.time())
 
         logger.info(
-            f"Server timestamp: {timestamp}, Local timestamp: {local_time}, Difference: {local_time - timestamp} seconds")
+            f"Server timestamp: {timestamp}, Local timestamp: {local_time}, "
+            f"Difference: {local_time - int(timestamp)} seconds")
         return echostr
     else:
         # 校验失败，抛出HTTP异常
