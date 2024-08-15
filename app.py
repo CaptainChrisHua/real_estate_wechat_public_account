@@ -13,6 +13,7 @@ from src.api.views import api_v1
 from src.api.wechat_views import wechat
 from src.crontab import scheduler, refresh_access_token
 
+
 # from src.conf.config import REDIS_ALGORITHMS
 # from src.crontab import scheduler
 #
@@ -52,7 +53,19 @@ from src.crontab import scheduler, refresh_access_token
 #         "uvicorn.access": {"handlers": ["access"], "level": "INFO", "propagate": False},
 #     }
 # }
-app = FastAPI(docs_url="/apidocs")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 启动时手动触发一次token刷新，确保Redis中有有效的token
+    await refresh_access_token()
+    # 添加定时任务，每两小时刷新一次token
+    scheduler.start()  # 启动调度器
+    yield
+    scheduler.shutdown()  # 关闭调度器
+
+
+app = FastAPI(lifespan=lifespan, docs_url="/apidocs")
+
 app.mount(path='/static', app=StaticFiles(directory="static"), name="static")
 
 # # 将发起请求都接入链路追踪
@@ -96,17 +109,6 @@ def test():
 #     lock = False
 # if lock:
 #   scheduler.start()  # 开启定时任务
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # 启动时手动触发一次token刷新，确保Redis中有有效的token
-    await refresh_access_token()
-    # 添加定时任务，每两小时刷新一次token
-    scheduler.start()  # 启动调度器
-    yield
-    scheduler.shutdown()  # 关闭调度器
-
-
-app = FastAPI(lifespan=lifespan)
 
 
 # @app.middleware("http")
