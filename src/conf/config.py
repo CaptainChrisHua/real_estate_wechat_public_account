@@ -28,4 +28,10 @@ PUB_APP_SECRET = "d935d05f9c745576a4422efcd71dac09"
 # PUB_APP_TOKEN = "California_Real_Estate"
 PUB_APP_TOKEN = "wx44"
 AES_KEY = "gzvZNe6KYytUd0BqIHIAaWvpgDulVpEeUl4whsnPg0a"
-ACCESS_TOKEN = "83_oRA4kalyJzbDJQu4og2z3ONMgOY25r9S11Law3uPc0gIzHe_q_rYeIDhAI8_9zmg5SoYpmNwyusJ-PoHqzN32GRWe6utv1caGJT_WsKC20wiQ_fjNOE2wAz4TgIJNSeABASWB"
+
+REDIS = {
+    'host': '127.0.0.1',
+    'port': '6666',
+    'db': '6',
+    'password': 'chris'
+}

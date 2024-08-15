@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import os
+from contextlib import asynccontextmanager
 
 import uvicorn
 from fastapi import FastAPI, Request
@@ -9,7 +10,8 @@ from starlette.responses import FileResponse
 
 from src.api import error_handler
 from src.api.views import api_v1
-from src.api.wechat import wechat
+from src.api.wechat_views import wechat
+from src.crontab import scheduler, refresh_access_token
 
 # from src.conf.config import REDIS_ALGORITHMS
 # from src.crontab import scheduler
@@ -93,7 +95,18 @@ def test():
 #     redis_util.delete(f"{REDIS_ALGORITHMS}:apscheduler_lock")
 #     lock = False
 # if lock:
-#     scheduler.start()  # 开启定时任务
+#   scheduler.start()  # 开启定时任务
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 启动时手动触发一次token刷新，确保Redis中有有效的token
+    await refresh_access_token()
+    # 添加定时任务，每两小时刷新一次token
+    scheduler.start()  # 启动调度器
+    yield
+    scheduler.shutdown()  # 关闭调度器
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 # @app.middleware("http")

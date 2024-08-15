@@ -31,7 +31,7 @@ class RedisUtil(object):
     def set(self, key, value):
         return self.redis_conn.set(key, value)
 
-    def setex(self, key, value, seconds):
+    def setex(self, key, seconds, value):
         return self.redis_conn.setex(key, seconds, value)
 
     def incr(self, key):

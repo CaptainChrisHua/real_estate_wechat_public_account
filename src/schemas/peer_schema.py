@@ -2,8 +2,7 @@
 from typing import List, Optional
 
 from pydantic import Field, BaseModel
-
-from src.schema import BaseRespSchema
+from src.schemas import BaseRespSchema
 
 
 class PeerSchema(BaseModel):
