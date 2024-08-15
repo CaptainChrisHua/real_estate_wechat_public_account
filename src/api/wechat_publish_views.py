@@ -6,7 +6,7 @@ from src.schemas.wechat_publish_schema import WeChatResponse
 from src.services.wechat_publish_service import publisher
 
 
-@wechat.post("/wechat/publish-list", response_model=WeChatResponse)
+@wechat.post("/publish_list", response_model=WeChatResponse)
 async def get_publish_list():
     try:
         result = publisher.get_publish_list()

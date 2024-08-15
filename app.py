@@ -11,6 +11,7 @@ from starlette.responses import FileResponse
 from src.api import error_handler
 from src.api.views import api_v1
 from src.api.wechat_views import wechat
+from src.api.wechat_publish_views import wechat as wechat_publish
 from src.crontab import scheduler, refresh_access_token
 
 
@@ -92,6 +93,7 @@ app.mount(path='/static', app=StaticFiles(directory="static"), name="static")
 # 注册蓝图，即多个模块
 app.include_router(api_v1)
 app.include_router(wechat)
+app.include_router(wechat_publish)
 
 
 @app.get('/test')
