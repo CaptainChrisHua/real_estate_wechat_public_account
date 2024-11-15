@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
 import traceback
 
-from elasticsearch.exceptions import RequestError
+from elasticsearch.exceptions import RequestError, BadRequestError
+from fastapi.exceptions import ResponseValidationError
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 from fastapi import HTTPException, status
@@ -60,18 +61,23 @@ def error_handler(error):
         logger.warning(error_content)
         return FailResponse(code=ResponseEnum.BAD_REQUEST.code, msg=ResponseEnum.BAD_REQUEST.msg)
 
+    # 返回数据格式异常
+    if isinstance(error, ResponseValidationError):
+        logger.warning(error_content)
+        return FailResponse(code=ResponseEnum.BAD_REQUEST.code, msg=ResponseEnum.BAD_REQUEST.msg)
+
     # ES连接异常
     if isinstance(error, RequestError):
         logger.warning(error_content)
         return FailResponse(code=error.status_code, msg=error.error)
 
     # badrequest
-    if isinstance(error, status.HTTP_400_BAD_REQUEST):
+    if isinstance(error, BadRequestError):
         logger.warning(error_content)
         return FailResponse(code=ResponseEnum.BAD_REQUEST.code, msg=ResponseEnum.BAD_REQUEST.msg)
 
     # not found
-    if isinstance(error, status.HTTP_404_NOT_FOUND):
+    if isinstance(error, BadRequestError):
         logger.warning(error_content)
         return FailResponse(code=ResponseEnum.NOT_FOUND.code, msg=ResponseEnum.NOT_FOUND.msg)
 

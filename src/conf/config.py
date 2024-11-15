@@ -23,11 +23,12 @@ TRACE_PARAM = config["trace"]["param"]
 # ENV = config["global"]["env"]
 
 
-PUB_APP_ID = "wxa72802b33554f173"
-PUB_APP_SECRET = "d935d05f9c745576a4422efcd71dac09"
+PUB_APP_ID = "wx659ed80cbfcace91"
+PUB_APP_SECRET = "785f3ac5d7aa0d466f2314d4d7a64d2b"
 # PUB_APP_TOKEN = "California_Real_Estate"
 PUB_APP_TOKEN = "wx44"
 AES_KEY = "gzvZNe6KYytUd0BqIHIAaWvpgDulVpEeUl4whsnPg0a"
+# ACCESS_TOKEN = "83_3PXHhWqxVS9hZD-PwhKqZY3NTIl_x7YzVr8z0UrlptDCFVdkG_K83YaUkacbNTFAd1HQ8AUkKQQp6gxgMrFYhjRC3GsaBmg3Ykj9idach27eYt8kKEprdQAPQzELTUhAFAVDE"
 
 REDIS = {
     'host': '127.0.0.1',

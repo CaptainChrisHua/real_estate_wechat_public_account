@@ -4,9 +4,9 @@ from pydantic import BaseModel
 
 
 class WeChatRequest(BaseModel):
+    type: str
     offset: int
     count: int
-    no_content: int = 0  # 默认值为0
 
 
 class WeChatArticle(BaseModel):
