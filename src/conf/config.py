@@ -36,3 +36,4 @@ REDIS = {
     'db': '6',
     'password': 'chris'
 }
+

@@ -17,6 +17,7 @@ async def fetch_access_token() -> str:
             if "access_token" in data:
                 expires_in = data["expires_in"]
                 save_access_token(data["access_token"], expires_in)
+                logger.info(f"access_token: {data['access_token']}")
                 return data["access_token"]
             else:
                 raise Exception(f"Error fetching access token: {data}")
