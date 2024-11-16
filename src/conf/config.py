@@ -32,8 +32,8 @@ AES_KEY = "nOGRgjqdZAGL6XGNDfvhD75KJaVuisZ2A6YZbEVGz1Q"
 
 REDIS = {
     'host': '127.0.0.1',
-    'port': '6666',
-    'db': '6',
+    'port': 6666,
+    'db': 6,
     'password': 'chris'
 }
 
