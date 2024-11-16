@@ -3,6 +3,7 @@ import httpx
 from fastapi import FastAPI, HTTPException
 
 from src.schemas.wechat_publish_schema import WeChatRequest
+from src.utils import logger
 from src.utils.wechat_access_token import get_access_token
 
 app = FastAPI()
@@ -14,6 +15,7 @@ class WeChatPublisher:
 
     async def get_publish_list(self, we_request: WeChatRequest):
         url = f"https://api.weixin.qq.com/cgi-bin/freepublish/batchget?access_token={get_access_token()}"
+        logger.info(f"url: {url}")
         data = we_request.dict()
         async with httpx.AsyncClient() as client:
             response = await client.post(url, json=data)
@@ -22,6 +24,7 @@ class WeChatPublisher:
             raise HTTPException(status_code=response.status_code, detail="Failed to fetch data from WeChat API")
 
         response_data = response.json()
+        logger.info(f"Response data: {response_data}")
         # You can process the response_data here if needed
         return response_data
 
