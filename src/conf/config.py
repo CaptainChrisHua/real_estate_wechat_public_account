@@ -30,10 +30,10 @@ PUB_APP_TOKEN = "CaliforniaRealEstate"
 AES_KEY = "nOGRgjqdZAGL6XGNDfvhD75KJaVuisZ2A6YZbEVGz1Q"
 # ACCESS_TOKEN = "83_3PXHhWqxVS9hZD-PwhKqZY3NTIl_x7YzVr8z0UrlptDCFVdkG_K83YaUkacbNTFAd1HQ8AUkKQQp6gxgMrFYhjRC3GsaBmg3Ykj9idach27eYt8kKEprdQAPQzELTUhAFAVDE"
 
+
 REDIS = {
     'host': '127.0.0.1',
     'port': 6666,
     'db': 6,
     'password': 'chris'
 }
-
