@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import requests
 
-from src.conf.config import PUB_APP_ID, PUB_APP_SECRET
+from config.config import PUB_APP_ID, PUB_APP_SECRET
 
 
 def get_access_token():

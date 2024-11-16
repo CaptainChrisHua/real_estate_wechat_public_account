@@ -3,7 +3,7 @@ import hashlib
 
 from fastapi import APIRouter, HTTPException, Request, Response
 
-from src.conf.config import PUB_APP_TOKEN
+from config.config import PUB_APP_TOKEN
 from src.utils import logger
 
 wechat = APIRouter(prefix="/api/v1/wechat", tags=["wechat"])

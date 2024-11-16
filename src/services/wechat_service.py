@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 import httpx
 
-from src.conf.config import PUB_APP_ID, PUB_APP_SECRET
+from config.config import PUB_APP_ID, PUB_APP_SECRET
 from src.utils import logger
 
 TOKEN_FILE_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),

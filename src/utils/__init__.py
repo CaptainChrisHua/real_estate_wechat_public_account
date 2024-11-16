@@ -3,7 +3,7 @@ from src.utils.es_util import EsApiUtil
 from src.utils.redis_util import RedisUtil
 from src.utils.log_utils import LogUtil
 
-from src.conf.config import LOG_PATH, LOG_LEVEL, REDIS
+from config.config import LOG_PATH, LOG_LEVEL, REDIS
 
 logger = LogUtil(log_path=LOG_PATH, log_level=LOG_LEVEL)
 redis_util = RedisUtil(REDIS)
