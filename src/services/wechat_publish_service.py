@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 import httpx
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile
 
 from src.schemas.wechat_publish_schema import WeChatRequest
 from src.utils import logger
@@ -50,6 +50,27 @@ class WeChatPublisher:
                 result = response.json()
                 if result.get("errcode") == 0:
                     return result
+                else:
+                    raise HTTPException(status_code=400, detail=result)
+            else:
+                raise HTTPException(status_code=response.status_code, detail=response.text)
+
+    async def upload_image(self, file: UploadFile) -> dict:
+        """
+        Uploads an image to WeChat to get a media_id.
+        """
+        url = f"{self.base_url}/material/add_material?access_token={get_access_token()}&type=image"
+        headers = {"Content-Type": "multipart/form-data"}
+
+        # Preparing the file for upload
+        files = {"media": (file.filename, file.file, file.content_type)}
+
+        async with httpx.AsyncClient() as client:
+            response = await client.post(url, files=files, headers=headers)
+            if response.status_code == 200:
+                result = response.json()
+                if result.get("errcode") == 0:
+                    return result  # Contains `media_id` and `url`
                 else:
                     raise HTTPException(status_code=400, detail=result)
             else:
