@@ -1,4 +1,6 @@
 # -*- coding:utf-8 -*-
+import json
+
 import httpx
 from fastapi import FastAPI, HTTPException, UploadFile
 
@@ -31,8 +33,9 @@ class WeChatPublisher:
     async def save_draft(self, draft_data: dict) -> dict:
         url = f"{self.base_url}/draft/add?access_token={get_access_token()}"
         headers = {"Content-Type": "application/json; charset=utf-8"}
+        payload = json.dumps(draft_data, ensure_ascii=False).encode("utf-8")
         async with httpx.AsyncClient() as client:
-            response = await client.post(url, json=draft_data, headers=headers)
+            response = await client.post(url, json=payload, headers=headers)
             if response.status_code == 200:
                 result = response.json()
                 return result
