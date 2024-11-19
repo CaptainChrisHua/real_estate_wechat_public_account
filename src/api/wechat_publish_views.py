@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
+from fastapi import UploadFile
 
 from src.api.wechat_views import wechat
-from src.schemas.wechat_publish_schema import WeChatRequest, WeChatResponse
+from src.schemas.wechat_publish_schema import WeChatRequest
 from src.services.wechat_publish_service import publisher
 
 
@@ -21,3 +22,9 @@ async def publish_article(media_id: str):
 async def save_draft(draft_data: dict):
     result = await publisher.save_draft(draft_data)
     return {"message": "Draft saved successfully", "data": result}
+
+
+@wechat.post("/add_material")
+async def add_material(file: UploadFile):
+    result = await publisher.add_material(file)
+    return {"message": "Material added successfully", "data": result}

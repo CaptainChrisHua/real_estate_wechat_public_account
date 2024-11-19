@@ -55,7 +55,7 @@ class WeChatPublisher:
             else:
                 raise HTTPException(status_code=response.status_code, detail=response.text)
 
-    async def upload_image(self, file: UploadFile) -> dict:
+    async def add_material(self, file: UploadFile) -> dict:
         """
         Uploads an image to WeChat to get a media_id.
         """
