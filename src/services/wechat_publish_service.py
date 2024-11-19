@@ -30,14 +30,12 @@ class WeChatPublisher:
 
     async def save_draft(self, draft_data: dict) -> dict:
         url = f"{self.base_url}/draft/add?access_token={get_access_token()}"
+        headers = {"Content-Type": "application/json; charset=utf-8"}
         async with httpx.AsyncClient() as client:
-            response = await client.post(url, json=draft_data)
+            response = await client.post(url, json=draft_data, headers=headers)
             if response.status_code == 200:
                 result = response.json()
-                if result.get("errcode") == 0:
-                    return result
-                else:
-                    raise HTTPException(status_code=400, detail=result)
+                return result
             else:
                 raise HTTPException(status_code=response.status_code, detail=response.text)
 
@@ -69,10 +67,7 @@ class WeChatPublisher:
             response = await client.post(url, files=files, headers=headers)
             if response.status_code == 200:
                 result = response.json()
-                if result.get("errcode") == 0:
-                    return result  # Contains `media_id` and `url`
-                else:
-                    raise HTTPException(status_code=400, detail=result)
+                return result  # Contains `media_id` and `url`
             else:
                 raise HTTPException(status_code=response.status_code, detail=response.text)
 
