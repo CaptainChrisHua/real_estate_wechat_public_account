@@ -39,3 +39,4 @@ async def save_draft(draft_data: dict):
 async def get_draft_list(offset: int, count: int, no_content: int = 1):
     result = await publisher.get_draft_list(offset, count, no_content)
     return {"message": "Get draft list successfully", "data": result}
+

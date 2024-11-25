@@ -8,6 +8,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import FileResponse
+from starlette.templating import Jinja2Templates
 
 from src.api import error_handler
 from src.api.views import api_v1
@@ -68,7 +69,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan, docs_url="/apidocs")
-
+templates = Jinja2Templates(directory="templates")
 app.mount(path='/static', app=StaticFiles(directory="static"), name="static")
 
 # # 将发起请求都接入链路追踪
@@ -110,6 +111,11 @@ app.add_middleware(
 @app.get('/test')
 def test():
     return 'ok'
+
+
+@app.get("/publish")
+async def get_publish_page(request: Request):
+    return templates.TemplateResponse("publish.html", {"request": request})
 
 
 # # 加锁，只有首次启动的worker执行定时任务，防止多worker启动多次定时任务
