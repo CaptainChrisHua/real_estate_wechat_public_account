@@ -24,10 +24,7 @@ class WeChatMaterials:
             response = await client.post(url, files=files, headers=headers)
             if response.status_code == 200:
                 result = response.json()
-                if result.get("errcode") == 0:
-                    return result
-                else:
-                    raise HTTPException(status_code=400, detail=result)
+                return result
             else:
                 raise HTTPException(status_code=response.status_code, detail=response.text)
 

@@ -1,4 +1,5 @@
-const apiBase = ""; // 使用相对路径
+// const apiBase = ""; // 使用相对路径
+// const apiBase = "http://localhost:4568"; // 替换为你的后端地址
 
 // 保存当前选中的封面图ID
 let selectedThumbMediaId = '';
@@ -13,18 +14,123 @@ document.addEventListener('DOMContentLoaded', () => {
 tinymce.init({
     selector: '#draft-data',
     plugins: [
-        'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace',
-        'table', 'visualblocks', 'wordcount', 'checklist', 'mediaembed', 'casechange', 'formatpainter'
+        'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image',
+        'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks',
+        'wordcount',
+        'checklist', 'mediaembed', 'casechange', 'formatpainter'
     ],
-    toolbar: 'undo redo | bold italic | link image | numlist bullist | removeformat',
-    tinycomments_mode: 'embedded',
+
+    toolbar: [
+        'undo redo | blocks fontfamily fontsize',
+        'bold italic underline strikethrough | link image media table',
+        'alignleft aligncenter alignright | lineheight',
+        'checklist numlist bullist | indent outdent',
+        'removeformat'
+    ].join(' | '),
+
     height: 500,
     menubar: false,
     statusbar: false,
     placeholder: '从这里开始写正文',
-    content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; font-size: 16px; line-height: 1.6; padding: 15px; }',
-});
 
+    // 图片上传相关配置
+    images_upload_handler: function (blobInfo, progress) {
+        return new Promise((resolve, reject) => {
+            const formData = new FormData();
+            formData.append('file', blobInfo.blob());
+
+            fetch('/api/v1/materials/add_material', {
+                method: 'POST',
+                body: formData
+            })
+                .then(async response => {
+                    const result = await response.json();
+                    if (!response.ok) {
+                        throw new Error(result.message || '上传失败');
+                    }
+
+                    if (result.data && result.data.url) {
+                        // 上传成功后刷新素材列表
+                        getMaterialList();
+                        // 返回图片URL
+                        resolve(result.data.url);
+                    } else {
+                        throw new Error('上传成功但未获得图片URL');
+                    }
+                })
+                .catch(error => {
+                    console.error("上传素材失败:", error);
+                    reject(error.message || '上传失败');
+                });
+        });
+    },
+
+    // 自动上传粘贴的图片
+    paste_data_images: true,
+
+    // 图片文件选择配置
+    file_picker_types: 'image',
+    file_picker_callback: function (callback, value, meta) {
+        if (meta.filetype === 'image') {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+
+            input.onchange = function () {
+                const file = this.files[0];
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/api/v1/materials/add_material', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(async response => {
+                        const result = await response.json();
+                        if (!response.ok) {
+                            throw new Error(result.message || '上传失败');
+                        }
+
+                        if (result.data && result.data.url) {
+                            // 上传成功后刷新素材列表
+                            getMaterialList();
+                            // 插入图片
+                            callback(result.data.url, { title: file.name });
+                        } else {
+                            throw new Error('上传成功但未获得图片URL');
+                        }
+                    })
+                    .catch(error => {
+                        console.error("上传素材失败:", error);
+                        alert('上传失败: ' + (error.message || '未知错误'));
+                    });
+            };
+
+            input.click();
+        }
+    },
+
+    // 基础样式配置
+    content_style: `
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, 
+                        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            padding: 15px;
+        }
+        img { max-width: 100%; height: auto; }
+        p { margin: 0 0 1em 0; }
+        table { width: 100%; border-collapse: collapse; }
+        table td, table th { border: 1px solid #ccc; padding: 0.4em; }
+    `,
+
+    // 其他设置
+    browser_spellcheck: true,
+    contextmenu: false,
+    elementpath: false,
+    resize: false,
+});
 // 保存草稿
 document.getElementById('save-draft-form').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -54,7 +160,7 @@ document.getElementById('save-draft-form').addEventListener('submit', async (eve
     };
 
     try {
-        const response = await fetch(`${apiBase}/api/v1/wechat/save_draft`, {
+        const response = await fetch(`/api/v1/wechat/save_draft`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,7 +185,7 @@ document.getElementById("upload-material-form").addEventListener("submit", async
     formData.append("file", fileInput.files[0]);
 
     try {
-        const response = await fetch(`${apiBase}/api/v1/materials/add_material`, {
+        const response = await fetch(`/api/v1/materials/add_material`, {
             method: "POST",
             body: formData
         });
@@ -95,7 +201,7 @@ document.getElementById("upload-material-form").addEventListener("submit", async
 // 获取素材列表
 async function getMaterialList() {
     try {
-        const response = await fetch(`${apiBase}/api/v1/materials/get_material_list`);
+        const response = await fetch(`/api/v1/materials/get_material_list`);
         const result = await response.json();
 
         const materialList = document.getElementById("material-list");
@@ -136,7 +242,7 @@ async function getMaterialList() {
 // 获取草稿列表
 async function getDraftList() {
     try {
-        const response = await fetch(`${apiBase}/api/v1/wechat/get_draft_list?offset=0&count=20`);
+        const response = await fetch(`/api/v1/wechat/get_draft_list?offset=0&count=20`);
         const result = await response.json();
 
         const draftList = document.getElementById("draft-list");
@@ -218,7 +324,7 @@ document.getElementById('send-mass-message-form').addEventListener('submit', asy
     }
 
     try {
-        const response = await fetch(`${apiBase}/api/v1/wechat/send_mass_message?${params.toString()}`, {
+        const response = await fetch(`/api/v1/wechat/send_mass_message?${params.toString()}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -254,7 +360,7 @@ document.getElementById('schedule-mass-message-form').addEventListener('submit',
     }
 
     try {
-        const response = await fetch(`${apiBase}/api/v1/wechat/timed_send_mass_message?${params.toString()}`, {
+        const response = await fetch(`/api/v1/wechat/timed_send_mass_message?${params.toString()}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
