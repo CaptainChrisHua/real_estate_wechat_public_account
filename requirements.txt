@@ -28,4 +28,4 @@ pymongo==4.8.0
 gunicorn
 requests
 apscheduler
-httpx==0.28.0
+httpx
