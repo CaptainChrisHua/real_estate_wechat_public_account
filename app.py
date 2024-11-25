@@ -5,13 +5,15 @@ from contextlib import asynccontextmanager
 
 import uvicorn
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import FileResponse
 
 from src.api import error_handler
 from src.api.views import api_v1
-from src.api.wechat_views import wechat
+from src.api.wechat_materias_views import materials
 from src.api.wechat_publish_views import wechat as wechat_publish
+from src.api.wechat_views import wechat
 from src.crontab import scheduler, refresh_access_token
 
 
@@ -94,6 +96,15 @@ app.mount(path='/static', app=StaticFiles(directory="static"), name="static")
 app.include_router(api_v1)
 app.include_router(wechat)
 app.include_router(wechat_publish)
+app.include_router(materials)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 或指定允许的来源
+    allow_credentials=True,
+    allow_methods=["*"],  # 允许的 HTTP 方法，比如 ["GET", "POST"]
+    allow_headers=["*"],  # 允许的请求头，比如 ["Authorization", "Content-Type"]
+)
 
 
 @app.get('/test')

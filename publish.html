@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeChat Publisher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.5;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .preview {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        input, textarea {
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .material-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .material-item {
+            cursor: pointer;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        .material-item img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .modal.show {
+            display: block;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .modal-header button {
+            padding: 5px 10px;
+        }
+        .modal-body {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+    <script src="https://cdn.tiny.cloud/1/08lrakodig73p2no5zro4feerpme8bzui2kog98krmqld92k/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+<h1>WeChat Publisher</h1>
+
+<!-- Upload Material -->
+<h2>1. 上传永久素材</h2>
+<form id="upload-material-form">
+    <input type="file" id="material-file" required />
+    <button type="submit">上传素材</button>
+</form>
+<div id="upload-material-response"></div>
+
+<button id="get-material-list-button">获取素材列表</button>
+<div id="material-modal" class="modal">
+    <div class="modal-header">
+        <h3>素材列表</h3>
+        <button id="close-modal">关闭</button>
+    </div>
+    <div class="modal-body" id="material-list">
+        <!-- 图片列表将动态加载到这里 -->
+    </div>
+</div>
+
+<!-- Save Draft -->
+<h2>2. 保存文章草稿</h2>
+<form id="save-draft-form">
+    <textarea id="draft-data" placeholder="编辑文章内容"></textarea>
+    <button type="submit">保存草稿</button>
+</form>
+<div id="save-draft-response"></div>
+
+<!-- Send Mass Message -->
+<h2>4. 群发推送</h2>
+<form id="send-mass-message-form">
+    <label>
+        <input type="checkbox" id="is-to-all" /> 群发给所有人
+    </label>
+    <input type="number" id="tag-id" placeholder="标签ID (可选)" />
+    <input type="text" id="media-id" placeholder="素材ID" required />
+    <button type="submit">一键群发</button>
+</form>
+<div id="send-mass-message-response"></div>
+
+<!-- Scheduled Mass Message -->
+<h2>5. 定时群发推送</h2>
+<form id="schedule-mass-message-form">
+    <input type="datetime-local" id="schedule-time" required />
+    <label>
+        <input type="checkbox" id="schedule-is-to-all" /> 群发给所有人
+    </label>
+    <input type="number" id="schedule-tag-id" placeholder="标签ID (可选)" />
+    <input type="text" id="schedule-media-id" placeholder="素材ID" required />
+    <button type="submit">定时群发</button>
+</form>
+<div id="schedule-mass-message-response"></div>
+
+<script>
+    const apiBase = "http://localhost:4568"; // 替换为你的后端地址
+
+    tinymce.init({
+        selector: 'textarea',
+        plugins: [
+            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace',
+            'table', 'visualblocks', 'wordcount', 'checklist', 'mediaembed', 'casechange', 'formatpainter'
+        ],
+        toolbar: 'undo redo | bold italic | link image | numlist bullist | removeformat',
+        tinycomments_mode: 'embedded',
+    });
+
+    // 上传素材
+    document.getElementById("upload-material-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const fileInput = document.getElementById("material-file");
+        const formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+
+        const response = await fetch(`${apiBase}/add_material`, {
+            method: "POST",
+            body: formData
+        });
+        const result = await response.json();
+        document.getElementById("upload-material-response").textContent = JSON.stringify(result, null, 2);
+    });
+
+    // 获取素材列表
+    document.getElementById("get-material-list-button").addEventListener("click", async () => {
+        try {
+            const response = await fetch(`${apiBase}/api/v1/materials/get_material_list`);
+            const result = await response.json();
+
+            // 打开模态框并渲染图片列表
+            const modal = document.getElementById("material-modal");
+            const materialList = document.getElementById("material-list");
+            materialList.innerHTML = ''; // 清空当前内容
+            result.data.item.forEach(material => {
+                const div = document.createElement("div");
+                div.className = "material-item";
+                div.innerHTML = `
+                    <img src="${material.url}" alt="${material.name}" />
+                    <p>${material.name}</p>
+                `;
+                div.addEventListener("click", () => {
+                    // 插入图片到富文本编辑器
+                    tinymce.activeEditor.insertContent(`<img src="${material.url}" alt="${material.name}" />`);
+                    modal.classList.remove("show"); // 关闭模态框
+                });
+                materialList.appendChild(div);
+            });
+
+            // 显示模态框
+            modal.classList.add("show");
+        } catch (error) {
+            console.error("获取素材列表失败:", error);
+        }
+    });
+
+    // 关闭模态框
+    document.getElementById("close-modal").addEventListener("click", () => {
+        document.getElementById("material-modal").classList.remove("show");
+    });
+</script>
+</body>
+</html>

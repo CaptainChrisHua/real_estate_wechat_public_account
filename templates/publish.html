@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeChat Publisher</title>
+    <link rel="stylesheet" href="/static/publish.css">
+    <script src="https://cdn.tiny.cloud/1/08lrakodig73p2no5zro4feerpme8bzui2kog98krmqld92k/tinymce/7/tinymce.min.js"
+            referrerpolicy="origin"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="main-title">WeChat Publisher</h1>
+
+    <!-- 素材管理部分 -->
+    <div class="section-container">
+        <div class="section-half">
+            <h2>1. 上传永久素材</h2>
+            <form id="upload-material-form">
+                <input type="file" id="material-file" required/>
+                <button type="submit">上传素材</button>
+            </form>
+            <div id="upload-material-response"></div>
+        </div>
+
+        <div class="section-half">
+            <div class="section-header">
+                <h2>2. 素材列表</h2>
+                <button id="refresh-material-list" class="refresh-button">刷新列表</button>
+            </div>
+            <div id="material-list" class="list-container">
+                <!-- 素材列表将动态加载到这里 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 文章管理部分 -->
+    <div class="section-container">
+        <div class="section-half">
+            <h2>3. 保存文章草稿</h2>
+            <form id="save-draft-form">
+                <div class="editor-container">
+                    <input type="text" id="article-title" class="editor-title" placeholder="请在这里输入标题" required/>
+                    <input type="text" id="article-author" class="editor-author" placeholder="请输入作者" required/>
+                    <div class="editor-divider"></div>
+                    <textarea id="draft-data" placeholder="从这里开始写正文"></textarea>
+                </div>
+                <button type="submit">保存草稿</button>
+            </form>
+            <div id="save-draft-response"></div>
+        </div>
+
+        <div class="section-half">
+            <div class="section-header">
+                <h2>4. 草稿列表</h2>
+                <button id="refresh-draft-list" class="refresh-button">刷新列表</button>
+            </div>
+            <div id="draft-list" class="list-container">
+                <!-- 草稿列表将动态加载到这里 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 群发管理部分 -->
+    <div class="section-container">
+        <div class="section-half">
+            <h2>5. 群发推送</h2>
+            <form id="send-mass-message-form">
+                <input type="text" id="media-id" placeholder="素材ID" required/>
+                <input type="number" id="tag-id" placeholder="标签ID（选填）"/>
+                <button type="submit">一键群发</button>
+            </form>
+            <div id="send-mass-message-response"></div>
+        </div>
+
+        <div class="section-half">
+            <h2>6. 定时群发推送</h2>
+            <form id="schedule-mass-message-form">
+                <input type="datetime-local" id="schedule-time" required/>
+                <input type="text" id="schedule-media-id" placeholder="素材ID" required/>
+                <input type="number" id="schedule-tag-id" placeholder="标签ID（选填）"/>
+                <button type="submit">定时群发</button>
+            </form>
+            <div id="schedule-mass-message-response"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/publish.js"></script>
+</body>
+</html>
