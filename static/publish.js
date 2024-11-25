@@ -1,4 +1,4 @@
-const apiBase = "http://localhost:4568"; // 替换为你的后端地址
+const apiBase = ""; // 使用相对路径
 
 // 保存当前选中的封面图ID
 let selectedThumbMediaId = '';
