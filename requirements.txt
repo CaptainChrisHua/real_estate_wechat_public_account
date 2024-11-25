@@ -17,8 +17,8 @@ uvicorn==0.30.5
 uvloop==0.19.0
 watchfiles==0.23.0
 websockets==12.0
-jinja2==-3.1.4
-python-multipart==0.0.9
+jinja2
+python-multipart
 
 # Others
 elasticsearch==8.14.0
