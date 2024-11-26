@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-
-from fastapi import UploadFile, APIRouter
+from fastapi import UploadFile, APIRouter, requests
 
-from src.schemas.wechat_publish_schema import WeChatRequest
 from src.services.wechat_materials import wechat_materials
 
 materials = APIRouter(prefix="/api/v1/materials", tags=["materials"])
@@ -17,3 +16,11 @@ async def get_material_list(material_type: str = "image", offset: int = 0, count
 async def add_material(file: UploadFile):
     result = await wechat_materials.add_material(file)
     return {"message": "Material added successfully", "data": result}
+
+
+# @materials.get("/api/v1/image_proxy")
+# async def image_proxy(url: str):
+#     # 设置微信要求的 Referer
+#     result = await wechat_materials.(file)
+#     return {"message": "Material added successfully", "data": result}
+

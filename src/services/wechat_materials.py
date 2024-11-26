@@ -57,4 +57,19 @@ class WeChatMaterials:
                 raise HTTPException(status_code=response.status_code, detail=response.text)
 
 
+async def image_proxy(url: str):
+    headers = {
+        'Referer': 'https://mp.weixin.qq.com',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+
+    async with httpx.AsyncClient() as client:
+        response = await client.post(url, headers=headers)
+        if response.status_code == 200:
+            result = response.json()
+            return result
+        else:
+            raise HTTPException(status_code=response.status_code, detail=response.text)
+
+
 wechat_materials = WeChatMaterials()
